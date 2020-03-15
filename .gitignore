@@ -1,4 +1,5 @@
 .vscode
+.vs
 
 src/Supermarket.API/bin
 src/Supermarket.API/obj
