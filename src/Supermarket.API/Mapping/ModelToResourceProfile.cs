@@ -1,15 +1,21 @@
 using AutoMapper;
 using Supermarket.API.Domain.Models;
+using Supermarket.API.Extensions;
 using Supermarket.API.Resources;
 
 namespace Supermarket.API.Mapping
 {
-    public class ModelToResourceProfile:Profile
+    public class ModelToResourceProfile : Profile
     {
         public ModelToResourceProfile()
         {
-             CreateMap<Category, CategoryResource>();
-             CreateMap<SaveCategoryResource, Category>();
+            CreateMap<Category, CategoryResource>();
+            CreateMap<SaveCategoryResource, Category>();
+
+            CreateMap<Product, ProductResource>().ForMember(src => src.UnitOfMeasurement,
+                                                 opt => opt.MapFrom(src => src.UnitOfMeasurement.ToDescriptionString()));
+            CreateMap<SaveProductResource, Product>();
+            CreateMap<Product, SaveProductResource>();
         }
     }
 }
